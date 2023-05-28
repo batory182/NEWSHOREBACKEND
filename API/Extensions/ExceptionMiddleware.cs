@@ -7,12 +7,15 @@ namespace API.Extensions
     public class ExceptionMiddleware
     {
         private readonly RequestDelegate _requestDelegate;
-        public ExceptionMiddleware(RequestDelegate requestDelegate) => _requestDelegate = requestDelegate;
+        public ExceptionMiddleware(RequestDelegate requestDelegatext)
+        {
+            this._requestDelegate = requestDelegatext;
+        }
         public async Task Invoke(HttpContext context)
         {
             try
             {
-                _requestDelegate(context);
+                await _requestDelegate(context);
             }
             catch (Exception ex)
             {
