@@ -1,5 +1,5 @@
 ﻿using Business.Entitites.Settings;
-using Domain.Services.Basic;
+using Domain.Services;
 using Infrastructure.ExternalWebServices;
 using Infrastructure.Repositories;
 
@@ -13,6 +13,7 @@ namespace API.Extensions
 
             //Services
             services.AddScoped<IBasicService, BasicService>();
+            services.AddScoped<IFlightService, FlightService>();
 
             //Infra
             services.AddScoped<IBasicRepository, BasicRepository>();

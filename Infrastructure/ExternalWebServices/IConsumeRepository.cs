@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Entitites;
+using BusinessEntities.DTOs;
 
 namespace Infrastructure.ExternalWebServices
 {
     public interface IConsumeRepository
     {
+        Task<IEnumerable<ResponseFlight>> GetFlightsAsync(string typeTrip);
     }
 }

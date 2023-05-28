@@ -7,23 +7,23 @@ namespace API.Extensions
 {
     internal static class ResultExtension
     {
-        internal static IResult ResultResponse<T>(this IResultExtensions resultExtensions, T data, string message = null, bool success = true)
+        internal static IResult ResultResponse<T>(this IResultExtensions resultExtensions, T data, string message = null, bool isSuccess = true)
         {
             ArgumentNullException.ThrowIfNull(resultExtensions, nameof(resultExtensions));
-            return new Result<T>(data, message, success);
+            return new Result<T>(data, message, isSuccess);
         }
         class Result<T> : IResult
         {
-            public Result(T data, string message = null, bool success = true)
+            public Result(T data, string message = null, bool isSuccess = true)
             {
                 this.Data = data;
                 this.Message = message;
-                this.Success = success;
+                this.IsSuccess = isSuccess;
             }
 
-            public T Data { get; private set; }
-            public string Message { get; private set; }
-            public bool Success { get; private set; }
+            public T Data { get; set; }
+            public string Message { get; set; }
+            public bool IsSuccess { get; set; }
 
             public Task ExecuteAsync(HttpContext httpContext) 
             {

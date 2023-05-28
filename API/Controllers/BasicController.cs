@@ -1,5 +1,5 @@
 ﻿using API.Extensions;
-using Domain.Services.Basic;
+using Domain.Services;
 
 namespace API.Controllers
 {

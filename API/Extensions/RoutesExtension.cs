@@ -9,7 +9,9 @@ namespace API.Extensions
         {
             if(app == null)
                 throw new ArgumentNullException(nameof(app));
+             
             app.BasicRoutes();
+            app.FlightRoutes();
         }
     }
 }

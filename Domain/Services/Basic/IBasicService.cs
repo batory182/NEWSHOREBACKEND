@@ -1,6 +1,6 @@
 ﻿using Business.Entitites;
 
-namespace Domain.Services.Basic
+namespace Domain.Services
 {
     public interface IBasicService
     {

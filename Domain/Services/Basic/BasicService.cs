@@ -2,7 +2,7 @@
 using Business.Entitites;
 using Infrastructure.Repositories;
 
-namespace Domain.Services.Basic
+namespace Domain.Services
 {
     public class BasicService: IBasicService
     {
