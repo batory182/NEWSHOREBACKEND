@@ -8,7 +8,7 @@ namespace API.Controllers
     {
         public static void FlightRoutes(this WebApplication app)
         {            
-            app.MapPost("api/flight/{origin}/{destination}", async (IFlightService flightService, string origin, string destination) 
+            app.MapGet("api/flight/{origin}/{destination}", async (IFlightService flightService, string origin, string destination) 
                 => Results.Extensions.ResultResponse(await flightService.GetFlightsAsync(origin, destination)));
         }
     }

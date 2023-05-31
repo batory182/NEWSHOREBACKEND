@@ -19,43 +19,15 @@ namespace Domain.Services
         public async Task<Journey> GetFlightsAsync(string origin, string destination)
         {
             Journey journey = new Journey();
-            journey.Origin = origin;
-            journey.Destination = destination;
+            journey.Origin = origin.ToUpper();
+            journey.Destination = destination.ToUpper();
             var type = "1";
             var flights = await _consumeRepository.GetFlightsAsync(type);
-            var routes = GetRoutes1(origin, destination, flights);
+            var routes = GetRoutes1(journey.Origin, journey.Destination, flights);
             journey.Flights = routes;
             if (journey.Flights.Count() > 0)
                 journey.Price = journey.Flights.Sum(x => x.Price);
             return journey;
-        }
-        private List<Flight> GetRoutes(string origin, string destination, List<Flight> flights)
-        {
-            List<Flight> routes = new List<Flight>();
-            var origins = flights.Where(x => x.Origin == origin);
-            if (origins.Where(x => x.Destination == destination).Count() == 1)
-            {
-                routes.Add(origins.Where(x => x.Destination == destination).First());
-                return routes;
-            }
-
-            foreach (var item in origins)
-            {
-                routes.Add(item);
-                var arrives = flights.Where(x => x.Origin == item.Destination);
-                foreach (var arrive in arrives)
-                {
-                    if (arrive.Destination == destination)
-                    {
-                        routes.Add(arrive);
-                    }
-                    else
-                    {
-                        routes.Remove(item);
-                    }
-                }
-            }
-            return routes;
         }
         private List<Flight> GetRoutes1(string origin, string destination, List<Flight> flights)
         {

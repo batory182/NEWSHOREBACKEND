@@ -6,6 +6,7 @@ using BusinessEntities.Mapping;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("App"));
+builder.Services.AddCorsDoc(builder.Configuration["AllowedOrigins"]);
 builder.Services.AddDependencys(builder.Configuration);
 builder.Services.AddSwaggerGen();
 
@@ -25,6 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UserCorsDoc();
 app.UseMiddleware<ExceptionMiddleware>();
 app.Routes();
 app.Run();
